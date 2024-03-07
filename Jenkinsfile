@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-               git branch: 'main',
-               url: 'https://github.com/gkalwaysno1/PES1UG21CS199_Jenkins.git' 
+                git branch: 'main',
+                url: 'https://github.com/gkalwaysno1/PES1UG21CS199_Jenkins.git' 
             }
         }
         stage('Build') {
@@ -29,6 +29,6 @@ pipeline {
     post {
         failure {
             echo 'Pipeline failed!'
-        }
-    }
+        }
+    }
 }
