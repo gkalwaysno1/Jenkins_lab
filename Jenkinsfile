@@ -2,34 +2,33 @@ pipeline {
     agent any
 
     stages {
+        stage('Checkout') {
+            steps {
+               git branch: 'main',
+               url: 'https://github.com/gkalwaysno1/PES1UG21CS199_Jenkins.git' 
+            }
+        }
         stage('Build') {
             steps {
-                sh 'g++ working.cpp -o temp'
-                 build job: 'PES1UG22CS199-1', wait: false
-                 echo 'Build by CS199 successful'
+                build 'PES1UG21CS199-1'
+                sh 'g++ working.cpp -o output'
             }
         }
-
         stage('Test') {
             steps {
-                sh 'cat working.cpp'
-                echo 'Test by CS199 successful'
+                sh './output'
             }
         }
-
         stage('Deploy') {
             steps {
-               
-                 echo 'Deploy by CS199 successful'
+                echo 'deploy'
             }
         }
     }
 
     post {
         failure {
-            
-                echo 'Pipeline Failed'
-          
-        }
-    }
+            echo 'Pipeline failed!'
+        }
+    }
 }
